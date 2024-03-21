@@ -4,7 +4,7 @@
 
 # One-Notification-App
 
-An ongoing project that simplifies email notification configuration and management hosted here. With an intuitive dashboard, developers can easily customize settings and trigger notifications using a powerful API or library. Monitor delivery status and track performance for seamless email communication.
+An ongoing project that simplifies email notification configuration and management hosted here. With an intuitive dashboard, developers can easily customize settings and trigger notifications using a RESTful API or library. Monitor delivery status and track performance for seamless email communication.
 
 The client is built with Next.js and the server with Nest.js.
 
@@ -17,11 +17,11 @@ The client is built with Next.js and the server with Nest.js.
 
 ## Installation
 
-Instructions on how to install and run your project.
+Instructions on how to install and run project.
 
 ## Usage
 
-Instructions on how to use your project.
+Instructions on how to use project.
 
 ## Contact
 
