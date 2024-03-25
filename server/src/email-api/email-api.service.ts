@@ -35,11 +35,28 @@ export class EmailApiService {
 
       return info;
       
+      // const updatedEmailRecord = await this.updateEmailStatus(
+      //   emailRecord,
+      //   'sent',
+      // );
+      // return updatedEmailRecord;
+    
     } catch (error) {
             const updatedEmailRecord = await this.updateEmailStatus(
         emailRecord,
         'failed',
       );
+      // if (error instanceof UnauthorizedException) {
+      //   throw new UnauthorizedException({
+      //     message: 'Email failed to send',
+      //     description: 'Failed setting up transporter smtp-transport.',
+      //     emailRecord: updatedEmailRecord,
+      //   });
+      // }
+      // throw new BadRequestException(
+      //   'Something bad happened',
+      //   'Error sending email',
+      // );
     }
   }
 
@@ -76,3 +93,4 @@ export class EmailApiService {
     return emailRecord;
   }
 }
+
