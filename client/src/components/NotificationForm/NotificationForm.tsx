@@ -5,15 +5,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 // import { sendEmail } from '@/utils/send-email';
 
 export type FormData = {
-  name: string;
+  to: string;
   email: string;
-  message: string;
+  content: string;
 };
 
 const NotificationForm: FC = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = data => console.log(data);
+  const onSubmit: SubmitHandler<FormData> = data => { 
+    console.log(data);
+    // sendEmail(data);
+  
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -28,7 +32,7 @@ const NotificationForm: FC = () => {
           type='text'
           placeholder='Full Name'
           className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          {...register('name', { required: true })}
+          {...register('to', { required: true })}
         />
       </div>
       <div className='relative'>
@@ -55,8 +59,8 @@ const NotificationForm: FC = () => {
         <textarea
           rows={4}
           placeholder='Type your message'
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          {...register('message', { required: true })}
+          className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          {...register('content', { required: true })}
         ></textarea>
       </div>
       <div>
