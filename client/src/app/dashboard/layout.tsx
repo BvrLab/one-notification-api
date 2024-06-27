@@ -4,16 +4,10 @@ import "../globals.css";
 import { Children } from "react";
 import SideNavMenu from "@/components/SideNavMenu/SideNavMenu";
 import {
-  Bars3Icon,
-  BellIcon,
   CalendarIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-  DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
   UsersIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/outline";
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +19,7 @@ const navigation = [
 ];
 
 const actions = [
-  { name: "Send Notification", href: "#", icon: HomeIcon, current: false },
+  { name: "Send Notification", href: "send-notification", icon: HomeIcon, current: false },
   { name: "Docs", href: "#", icon: UsersIcon, current: false },
 ];
 
