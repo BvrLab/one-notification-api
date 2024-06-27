@@ -19,9 +19,7 @@ const NotificationForm: FC = () => {
   };
 
   return (
-    <div 
-      className="p-2 bg-orange-50" 
-    >
+    <div className="p-2 bg-orange-50">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex w-full mt-5 items-center border-0 border-b-xs border-solid">
           <label
@@ -57,13 +55,12 @@ const NotificationForm: FC = () => {
         <div className="h-px w-full bg-[#DCDEE4]"></div>
 
         <div className="h-2 w-full bg-teal-700"></div>
-        
+
         <div className="mb-5">
           <label
             htmlFor="message"
             className="block text-sm font-medium leading-6 text-gray-900"
-          >
-          </label>
+          ></label>
           <textarea
             rows={4}
             placeholder="Type your message here..."
