@@ -12,14 +12,14 @@ import {
 // const inter = Inter({ subsets: ["latin"] });
 
 const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
+  { name: "Home", href: "/dashboard", icon: HomeIcon, current: true },
   { name: "Templates", href: "#", icon: UsersIcon, current: false },
   { name: "Database", href: "#", icon: FolderIcon, current: false },
   { name: "Logs", href: "#", icon: CalendarIcon, current: false },
 ];
 
 const actions = [
-  { name: "Send Notification", href: "send-notification", icon: HomeIcon, current: false },
+  { name: "Send Notification", href: "/dashboard/send-notification", icon: HomeIcon, current: false },
   { name: "Docs", href: "#", icon: UsersIcon, current: false },
 ];
 
