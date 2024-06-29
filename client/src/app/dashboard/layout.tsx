@@ -33,19 +33,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="h-full bg-white" lang="en">
-      <body className="h-full">
-        <div>
+    <html lang="en">
+      <body>
+        <div className="h-full bg-gray-900">
           {/* Static sidebar for desktop */}
           <SideNavMenu
             navigations={navigation}
             actions={actions}
             settings={settings}
           />
-          <div className="lg:pl-72">
+          <div className="lg:pl-52 h-full">
             {/* could add top bar in future or in other case*/}
-            <main className="py-10">
-              <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+            <main className="py-10 h-full">
+              <div className="px-4 sm:px-6 lg:px-8 h-full">{children}</div>
             </main>
           </div>
         </div>
