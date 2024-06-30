@@ -44,8 +44,8 @@ export default function RootLayout({
           />
           <div className="lg:pl-52 h-full">
             {/* could add top bar in future or in other case*/}
-            <main className="py-10 h-full">
-              <div className="px-4 sm:px-6 lg:px-8 h-full">{children}</div>
+            <main className="h-full">
+              <div className="h-full">{children}</div>
             </main>
           </div>
         </div>

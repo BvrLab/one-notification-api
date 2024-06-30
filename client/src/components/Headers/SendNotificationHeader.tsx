@@ -1,0 +1,26 @@
+import React from "react";
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/20/solid'
+
+const SendNotificationHeader = () => {
+    return (
+    <div className="flex flex-row items-center h-16 w-full px-5 py-1 bg-teal-900  border-teal-950">
+        <div className="flex w-full items-center gap-2 pr-2">
+            <span className="cursor-default font-bold text-white">
+                Send a notification
+            </span>
+        </div>
+    
+        <div className="flex w-full items-center justify-end">
+            <button 
+                type="button"
+                className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+                Configure
+                <AdjustmentsHorizontalIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
+            </button>
+        </div>
+    </div>
+    );
+}
+
+export default SendNotificationHeader;
