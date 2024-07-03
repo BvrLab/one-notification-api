@@ -1,0 +1,9 @@
+.formSlideIn {
+    transform: translateX(-8.3%); /* Adjust the value based on the desired effect */
+    transition: transform 0.5s ease-in-out;
+}
+  
+.formSlideOut {
+transform: translateX(0);
+transition: transform 0.5s ease-in-out;
+}
