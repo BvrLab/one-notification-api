@@ -1,31 +1,7 @@
 import React from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  TransitionChild,
-} from "@headlessui/react";
 
 import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
-
-import {
-  Bars3Icon,
-  BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
   Cog6ToothIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 import { NavigationOption } from "@/types";
@@ -33,14 +9,13 @@ import { NavigationOption } from "@/types";
 type SideNavMenuProp = {
   navigations: NavigationOption[];
   actions: NavigationOption[];
-  settings: NavigationOption[];
 };
 
 function classNames(...classes: (string | undefined | false | null)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-const SideNavMenu = ({ navigations, actions, settings }: SideNavMenuProp) => {
+const SideNavMenu = ({ navigations, actions }: SideNavMenuProp) => {
   return (
     <>
       {/* Static sidebar for desktop */}

@@ -9,9 +9,9 @@ export default function Home() {
     {/* <main> */}
         <Link 
             className="m-auto hover:bg-teal-800 rounded-md bg-teal-900 py-3 px-6 mx-2 text-base font-semibold text-white outline-none" 
-            href="/dashboard"
+            href="/dashboard/send-notification"
         >
-            Direct to dashbord 
+            DEMO: Direct to dashbord/send-notification
         </Link>
 
       {/* <h1>intor page</h1>

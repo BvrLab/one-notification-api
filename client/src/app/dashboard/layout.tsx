@@ -4,28 +4,34 @@ import "../globals.css";
 import { Children } from "react";
 import SideNavMenu from "@/components/SideNavMenu/SideNavMenu";
 import {
-  CalendarIcon,
-  FolderIcon,
+  Square2StackIcon,
+  ServerStackIcon,
+  BookOpenIcon,
   HomeIcon,
-  UsersIcon,
+  PaperAirplaneIcon,
+  DocumentIcon,
+  Cog6ToothIcon
+
 } from "@heroicons/react/24/outline";
 // const inter = Inter({ subsets: ["latin"] });
 
 const navigation = [
   { name: "Home", href: "/dashboard", icon: HomeIcon, current: true },
-  { name: "Templates", href: "#", icon: UsersIcon, current: false },
-  { name: "Database", href: "#", icon: FolderIcon, current: false },
-  { name: "Logs", href: "#", icon: CalendarIcon, current: false },
+  { name: "Templates", href: "#", icon: Square2StackIcon, current: false },
+  { name: "Database", href: "#", icon: ServerStackIcon, current: false },
+  { name: "Logs", href: "#", icon: BookOpenIcon, current: false },
 ];
 
 const actions = [
-  { name: "Send Notification", href: "/dashboard/send-notification", icon: HomeIcon, current: false },
-  { name: "Docs", href: "#", icon: UsersIcon, current: false },
+  {
+    name: "Send Notification",
+    href: "/dashboard/send-notification",
+    icon: PaperAirplaneIcon,
+    current: false,
+  },
+  { name: "Docs", href: "#", icon: DocumentIcon, current: false },
 ];
 
-const settings = [
-  { name: "settings", href: "#", icon: HomeIcon, current: false },
-];
 
 export default function RootLayout({
   children,
@@ -34,19 +40,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className="h-full bg-gray-900">
-          {/* Static sidebar for desktop */}
-          <SideNavMenu
-            navigations={navigation}
-            actions={actions}
-            settings={settings}
-          />
-          <div className="lg:pl-52 h-full">
-            {/* could add top bar in future or in other case*/}
-            <main className="h-full">
-              <div className="h-full">{children}</div>
-            </main>
+      <body className="min-h-screen bg-gray-900">
+        <div className="min-h-screen bg-gray-900">
+            {/* Static sidebar for desktop */}
+            <SideNavMenu
+                    navigations={navigation}
+                    actions={actions}
+            />
+            <div className="lg:pl-52 min-h-screen">
+                {/* could add top bar in future or in other case*/}
+                <main className="min-h-screen">
+                    <div className="min-h-screen">{children}</div>
+                </main>
           </div>
         </div>
       </body>

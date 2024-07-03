@@ -10,7 +10,14 @@ export type FormData = {
   content: string;
 };
 
-const NotificationForm: FC = () => {
+
+interface NotificationFormProps {
+  isOpen: boolean;
+}
+
+const NotificationForm: FC<NotificationFormProps> = ({
+  isOpen
+}) => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -19,7 +26,7 @@ const NotificationForm: FC = () => {
   };
 
   return (
-    <div className="py-2 px-8 bg-orange-50 rounded-2xl h-full overflow-auto">
+    <div className="py-2 px-8 sm:w-9/12 md:w-8/12 lg:w-6/12 bg-orange-50 rounded-2xl h-full overflow-auto">
       <form className="flex flex-col h-full" onSubmit={handleSubmit(onSubmit)} >
         <div className="flex w-full mt-5 items-center border-0 border-b-xs border-solid">
           <label
@@ -31,7 +38,7 @@ const NotificationForm: FC = () => {
           <input
             type="text"
             placeholder="example@domain.com"
-            className="block w-full border-0 py-1.5 bg-orange-50 text-gray-900 sm:text-sm sm:leading-6 focus:outline-none"
+            className="block w-full border-0 py-1.5 bg-orange-50 text-gray-900 sm:text-sm sm:leading-6 ring-0 focus:ring-0"
             {...register("to", { required: true })}
           />
         </div>
@@ -48,7 +55,7 @@ const NotificationForm: FC = () => {
           <input
             type="text"
             placeholder="This is a subject"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-orange-50 sm:text-sm sm:leading-6 focus:outline-none"
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-orange-50 sm:text-sm sm:leading-6 ring-0 focus:ring-0"
             {...register("subject", { required: true })}
           />
         </div>
@@ -60,7 +67,7 @@ const NotificationForm: FC = () => {
           <textarea
             rows={15}
             placeholder="Type your message here..."
-            className="block w-full h-full rounded-md border-0 py-3 text-gray-900 bg-orange-50 sm:text-sm sm:leading-6 focus:outline-none"
+            className="block w-full h-full rounded-md border-0 py-3 text-gray-900 bg-orange-50 sm:text-sm sm:leading-6 ring-0 focus:ring-0"
             {...register("content", { required: true })}
           ></textarea>
         </div>
