@@ -19,9 +19,8 @@ model User {
   updatedAt DateTime @updatedAt
 
   email     String  @unique
-  hash      String
-  firstName String?
-  lastName  String?
+  hash      String?
+  username  String
 
   @@map("users")
 }
