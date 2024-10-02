@@ -1,23 +1,23 @@
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateUserDto {
+export class RegisterUserDto {
+    //   @IsString()
+    //   @IsNotEmpty()
+    //   provider: string;
+
+    @IsString()
+    @IsNotEmpty()
+    id: string;
+
     @IsEmail()
     @IsNotEmpty()
     email: string;
-
-    @IsString()
-    @IsOptional()
-    hash?: string;
 
     @IsString()
     @IsNotEmpty()
     username: string;
 
     //   @IsString()
-    //   @IsNotEmpty()
-    //   provider: string;
-
-    //   @IsString()
-    //   @IsNotEmpty()
-    //   providerId: string;
+    //   @IsOptional()
+    //   picture?: string;
 }

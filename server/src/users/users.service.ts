@@ -7,25 +7,21 @@ export type User = any;
 
 @Injectable()
 export class UsersService {
+    constructor(private prisma: PrismaService) {}
 
-  constructor(
-    private prisma: PrismaService,
-  ) {}
+    async create(createUserDto: CreateUserDto) {
+        const user = this.prisma.user.create({
+            data: createUserDto,
+        });
+        return user;
+    }
 
-  async create(createUserDto:CreateUserDto) {
-    const user = this.prisma.user.create({
-      data: createUserDto,
-    });
-    return user;
-  }
+    // async findOneByEmail(email: string): Promise<User | undefined> {
+    async findOneByEmail(email: string) {
+        const user = this.prisma.user.findUnique({
+            where: { email: email },
+        });
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
-    const user = this.prisma.user.findUnique({
-      where:{email},
-    });
-
-    return user;
-  }
-
-  
+        return user;
+    }
 }
