@@ -1,6 +1,7 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 // import { JwtService } from '@nestjs/jwt';
 
+import { compare } from 'bcryptjs'
 import { UsersService } from 'src/users/users.service';
 import { RegisterUserDto } from './dtos/auth.dto';
 import { CreateUserDto } from 'src/users/dtos/user.dto';
@@ -12,6 +13,18 @@ export class AuthService {
       // private jwtService: JwtService,
     ) 
     {}
+
+    async validateLocalUser (email:string, password:string){
+        const user = this.usersService.findOneByEmail(email);
+        if (!user)
+            throw new UnauthorizedException('User Not Found!')
+        
+        const isPasswordMatch = await compare(password,(await user).password)
+        if (!isPasswordMatch)
+            throw new UnauthorizedException('Invalid credentials');
+
+        return { id: (await user).id };
+    }
 
     // generateJwt(payload){
     //     return this.jwtService.sign(payload);
