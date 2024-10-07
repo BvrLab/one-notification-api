@@ -5,10 +5,11 @@ import { GoogleStrategy } from './strategies/google.strategy';
 import { ConfigModule } from '@nestjs/config';
 import googleOauthConfig from './config/google-oauth-config';
 import { UsersService } from 'src/users/users.service';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
     imports: [
-		ConfigModule.forFeature(googleOauthConfig)
+		ConfigModule.forFeature(googleOauthConfig),
 	],
     providers: [
       AuthService,

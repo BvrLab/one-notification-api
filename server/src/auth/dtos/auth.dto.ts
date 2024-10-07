@@ -17,6 +17,10 @@ export class RegisterUserDto {
     @IsNotEmpty()
     username: string;
 
+    @IsString()
+    @IsOptional()
+    password
+
     //   @IsString()
     //   @IsOptional()
     //   picture?: string;

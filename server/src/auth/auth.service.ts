@@ -1,34 +1,38 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+// import { JwtService } from '@nestjs/jwt';
 
 import { UsersService } from 'src/users/users.service';
 import { RegisterUserDto } from './dtos/auth.dto';
+import { CreateUserDto } from 'src/users/dtos/user.dto';
 
 @Injectable()
 export class AuthService {
-    constructor() // private usersService: UsersService, // private jwtService: JwtService,
+    constructor(
+      private usersService: UsersService,
+      // private jwtService: JwtService,
+    ) 
     {}
 
     // generateJwt(payload){
     //     return this.jwtService.sign(payload);
     // }
 
-    // async signIn(user){
-    //     if(!user){
+    // async validateGoogleUser(googleUser : CreateUserDto){
+    //     if(!googleUser){
     //         throw new BadRequestException('Unauthenticated');
     //     }
 
-    //     const userExists = await this.usersService.findOne(user.email);
+    //     const userExists = await this.usersService.findOneByEmail(googleUser.email);
 
     //     if(!userExists){
-    //         return this.registerUser(user);
+    //         return this.usersService.create(googleUser);
     //     }
 
     // }
 
-    // async registerUser(user: RegisterUserDto){
+    // async registerUser(googleUser: RegisterUserDto){
     //     try {
-    //         const newUser = this.usersService.create(user);
+    //         const newUser = this.usersService.create(googleUser);
     //         newUser.username = generateFromEmail(user.email, 5);
 
     //         await this.userRepository.save(newUser);
