@@ -5,12 +5,14 @@ import { compare } from 'bcryptjs'
 import { UsersService } from 'src/users/users.service';
 import { RegisterUserDto } from './dtos/auth.dto';
 import { CreateUserDto } from 'src/users/dtos/user.dto';
+import { JwtService } from '@nestjs/jwt';
+import { AuthJwtPayload } from './types/auth-jwtPayload';
 
 @Injectable()
 export class AuthService {
     constructor(
       private usersService: UsersService,
-      // private jwtService: JwtService,
+      private jwtService: JwtService,
     ) 
     {}
 
@@ -24,6 +26,12 @@ export class AuthService {
             throw new UnauthorizedException('Invalid credentials');
 
         return { id: (await user).id };
+    }
+
+    async login(userId:string) {
+
+        const payload: AuthJwtPayload = { sub:userId}
+        return this.jwtService.sign(payload);
     }
 
     // generateJwt(payload){
