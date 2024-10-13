@@ -19,7 +19,5 @@
         "noFallthroughCasesInSwitch": false,
         "checkJs": true
     },
-    "include": [
-        "src/**/*"
-    ]
+    "include": ["src/**/*"]
 }

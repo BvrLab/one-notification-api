@@ -19,7 +19,7 @@ export class RegisterUserDto {
 
     @IsString()
     @IsOptional()
-    password:string;
+    password: string;
 
     //   @IsString()
     //   @IsOptional()

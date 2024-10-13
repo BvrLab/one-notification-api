@@ -1,7 +1,5 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-// import { JwtService } from '@nestjs/jwt';
-
-import { compare } from 'bcryptjs'
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { compare } from 'bcryptjs';
 import { UsersService } from 'src/users/users.service';
 import { RegisterUserDto } from './dtos/auth.dto';
 import { CreateUserDto } from 'src/users/dtos/user.dto';
@@ -11,32 +9,25 @@ import { AuthJwtPayload } from './types/auth-jwtPayload';
 @Injectable()
 export class AuthService {
     constructor(
-      private usersService: UsersService,
-      private jwtService: JwtService,
-    ) 
-    {}
+        private usersService: UsersService,
+        private jwtService: JwtService,
+    ) {}
 
-    async validateLocalUser (email:string, password:string){
+    async validateLocalUser(email: string, password: string) {
         const user = this.usersService.findOneByEmail(email);
-        if (!user)
-            throw new UnauthorizedException('User Not Found!')
-        
-        const isPasswordMatch = await compare(password,(await user).password)
+        if (!user) throw new UnauthorizedException('User Not Found!');
+
+        const isPasswordMatch = await compare(password, (await user).password);
         if (!isPasswordMatch)
             throw new UnauthorizedException('Invalid credentials');
 
         return { id: (await user).id };
     }
 
-    async login(userId:string) {
-
-        const payload: AuthJwtPayload = { sub:userId}
+    async login(userId: string) {
+        const payload: AuthJwtPayload = { sub: userId };
         return this.jwtService.sign(payload);
     }
-
-    // generateJwt(payload){
-    //     return this.jwtService.sign(payload);
-    // }
 
     // async validateGoogleUser(googleUser : CreateUserDto){
     //     if(!googleUser){

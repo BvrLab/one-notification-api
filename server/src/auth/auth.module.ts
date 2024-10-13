@@ -13,17 +13,17 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
     imports: [
-		ConfigModule.forFeature(googleOauthConfig),
-    ConfigModule.forFeature(jwtConfig),
-		PassportModule,
-    JwtModule.registerAsync(jwtConfig.asProvider())
-	],
+        ConfigModule.forFeature(googleOauthConfig),
+        ConfigModule.forFeature(jwtConfig),
+        PassportModule,
+        JwtModule.registerAsync(jwtConfig.asProvider()),
+    ],
     providers: [
-      AuthService,
-	    UsersService,
-      GoogleStrategy,
-	    LocalStrategy,
-      JwtStrategy
+        AuthService,
+        UsersService,
+        GoogleStrategy,
+        LocalStrategy,
+        JwtStrategy,
     ],
     controllers: [AuthController],
 })
