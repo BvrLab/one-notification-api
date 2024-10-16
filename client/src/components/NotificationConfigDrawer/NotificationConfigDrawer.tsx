@@ -1,70 +1,85 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 interface NotificationConfigDrawerProps {
-    isOpen: boolean;
+    isOpen: boolean
 }
 
 export default function NotificationConfigDrawer({
     isOpen,
 }: NotificationConfigDrawerProps) {
-    const [shouldRender, setShouldRender] = useState(isOpen);
-    const [channel, setChannel] = useState('Email');
-    const [provider, setProvider] = useState('Gmail');
-    const [topic, setTopic] = useState('General Notifications');
+    const [shouldRender, setShouldRender] = useState(isOpen)
+    const [channel, setChannel] = useState('Email')
+    const [provider, setProvider] = useState('Gmail')
+    const [topic, setTopic] = useState('General Notifications')
 
     useEffect(() => {
-        if (isOpen) setShouldRender(true);
-    }, [isOpen]);
+        if (isOpen) setShouldRender(true)
+    }, [isOpen])
 
     const onAnimationEnd = () => {
-        if (!isOpen) setShouldRender(false);
-    };
-
-    
+        if (!isOpen) setShouldRender(false)
+    }
 
     return (
         shouldRender && (
             <div
-                className={`w-2/12 bg-teal-800 py-3 px-2 absolute right-0 h-full transition-transform duration-500 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                className={`absolute right-0 h-full w-2/12 bg-teal-800 px-2 py-3 transition-transform duration-500 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
                 onAnimationEnd={onAnimationEnd}
             >
-                <h2 className="text-lg p-1 font-semibold text-white mb-4">Configure</h2>
+                <h2 className="mb-4 p-1 text-lg font-semibold text-white">
+                    Configure
+                </h2>
                 <div className="space-y-4">
-                    <div className="p-1 rounded-lg">
-                        <label htmlFor="channel" className="block text-sm text-gray-300 mb-1">Channel</label>
-                        <select 
-                            id="channel" 
+                    <div className="rounded-lg p-1">
+                        <label
+                            htmlFor="channel"
+                            className="mb-1 block text-sm text-gray-300"
+                        >
+                            Channel
+                        </label>
+                        <select
+                            id="channel"
                             value={channel}
-                            onChange={e => setChannel(e.target.value)}
-                            className="w-full bg-gray-800 text-white rounded-md p-1.5"
+                            onChange={(e) => setChannel(e.target.value)}
+                            className="w-full rounded-md bg-gray-800 p-1.5 text-white"
                         >
                             <option>Email</option>
                             <option>SMS</option>
                             <option>Push Notification</option>
                         </select>
                     </div>
-                    <div className="p-1 rounded-lg">
-                        <label htmlFor="provider" className="block text-sm text-gray-300 mb-1">Provider</label>
-                        <select 
-                            id="provider" 
+                    <div className="rounded-lg p-1">
+                        <label
+                            htmlFor="provider"
+                            className="mb-1 block text-sm text-gray-300"
+                        >
+                            Provider
+                        </label>
+                        <select
+                            id="provider"
                             value={provider}
-                            onChange={e => setProvider(e.target.value)}
-                            className="w-full bg-gray-800 text-white rounded-md p-1.5"
+                            onChange={(e) => setProvider(e.target.value)}
+                            className="w-full rounded-md bg-gray-800 p-1.5 text-white"
                         >
                             <option>Gmail</option>
                             <option>Yahoo</option>
                             <option>Outlook</option>
                         </select>
                     </div>
-                    <div className="p-1 rounded-lg">
-                        <label htmlFor="topic" className="block text-sm text-gray-300 mb-1">Subscription Topic</label>
-                        <select 
-                            id="topic" 
+                    <div className="rounded-lg p-1">
+                        <label
+                            htmlFor="topic"
+                            className="mb-1 block text-sm text-gray-300"
+                        >
+                            Subscription Topic
+                        </label>
+                        <select
+                            id="topic"
                             value={topic}
-                            onChange={e => setTopic(e.target.value)}
-                            className="w-full bg-gray-800 text-white rounded-md p-1.5"
+                            onChange={(e) => setTopic(e.target.value)}
+                            className="w-full rounded-md bg-gray-800 p-1.5 text-white"
                         >
                             <option>General Notifications</option>
                             <option>Product Updates</option>
@@ -73,28 +88,31 @@ export default function NotificationConfigDrawer({
                     </div>
                 </div>
 
-                <div className="h-px w-full my-2  border-t bg-[#DCDEE4]"></div>
+                <div className="my-2 h-px w-full border-t bg-[#DCDEE4]"></div>
 
-                <h2 className="text-lg p-1 font-semibold text-white mb-4">Advanced</h2>
+                <h2 className="mb-4 p-1 text-lg font-semibold text-white">
+                    Advanced
+                </h2>
 
-                <div className="p-1 rounded-lg">
-                        <label htmlFor="topic" className="block text-sm text-gray-300 mb-1">templates</label>
-                        <select 
-                            id="topic" 
-                            value={topic}
-                            onChange={e => setTopic(e.target.value)}
-                            className="w-full bg-gray-800 text-white rounded-md p-1.5"
-                        >
-                            <option>Onboarding 1</option>
-                            <option>Warnning 1</option>
-                            <option>Warnning 2</option>
-                        </select>
-                    </div>
-                
-
+                <div className="rounded-lg p-1">
+                    <label
+                        htmlFor="topic"
+                        className="mb-1 block text-sm text-gray-300"
+                    >
+                        templates
+                    </label>
+                    <select
+                        id="topic"
+                        value={topic}
+                        onChange={(e) => setTopic(e.target.value)}
+                        className="w-full rounded-md bg-gray-800 p-1.5 text-white"
+                    >
+                        <option>Onboarding 1</option>
+                        <option>Warnning 1</option>
+                        <option>Warnning 2</option>
+                    </select>
+                </div>
             </div>
-
-            
         )
-    );
+    )
 }
