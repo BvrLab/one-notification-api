@@ -1,8 +1,9 @@
 import React from 'react'
 
-export interface NavigationOption {
+export interface CheckboxGroupOption {
+    id: string
     name: string
-    href: string
-    icon: React.ElementType
-    current: boolean
+    description?: string
+    value: string
+    isSelected: boolean
 }

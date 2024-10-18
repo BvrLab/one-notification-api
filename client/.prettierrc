@@ -2,7 +2,6 @@
     "trailingComma": "es5",
     "tabWidth": 4,
     "semi": false,
-    "maxLineLength": 80,
     "singleQuote": true,
     "plugins": ["prettier-plugin-tailwindcss"]
 }
