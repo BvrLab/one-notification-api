@@ -17,7 +17,12 @@ export default function Home() {
                 </Link>
 
                 <div className="mx-2 mt-5 rounded-md bg-teal-900 px-6 py-3 text-base font-semibold text-white outline-none hover:bg-teal-800">
-                    Login
+                    <Link
+                        className="m-auto mx-2 rounded-md bg-teal-900 px-6 py-3 text-base font-semibold text-white outline-none hover:bg-teal-800"
+                        href="/auth"
+                    >
+                        Login Page
+                    </Link>
                 </div>
             </div>
 

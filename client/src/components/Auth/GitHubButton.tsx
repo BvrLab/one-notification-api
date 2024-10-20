@@ -2,7 +2,7 @@ import Button from '@/components/Buttons/Button'
 
 function GitHubIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     return (
-        <div className='pr-1'>
+        <div className="pr-1">
             <svg
                 fill="currentColor"
                 viewBox="0 0 20 20"

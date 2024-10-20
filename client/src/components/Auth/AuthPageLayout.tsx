@@ -1,9 +1,7 @@
-import Button from '../Buttons/Button'
+import Image from 'next/image'
 import Container from '../Containers/Container'
 import Flexbox from '../Containers/flexbox/Flexbox'
-import { Devider } from '../Devider/Devider'
 import { LoginForm } from './LoginForm'
-
 
 export function AuthPageLayout() {
     return (
@@ -20,10 +18,14 @@ export function AuthPageLayout() {
             </Flexbox>
 
             <Container className="relative hidden w-0 flex-1 lg:block">
-                <img
+
+                <Image 
                     alt=""
                     src="/images/signin_page_picture.jpg"
                     className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+                    width={1280}
+                    height={960}
+                
                 />
             </Container>
         </Flexbox>

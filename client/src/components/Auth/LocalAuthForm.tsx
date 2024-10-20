@@ -1,15 +1,14 @@
-import CheckboxGroup from "../Checkboxs/CheckboxGroup";
-import Container from "../Containers/Container";
-import Flexbox from "../Containers/flexbox/Flexbox";
-import Input from "../Inputs/Input";
+import CheckboxGroup from '../Checkboxs/CheckboxGroup'
+import Container from '../Containers/Container'
+import Flexbox from '../Containers/flexbox/Flexbox'
+import Input from '../Inputs/Input'
 
 export function LocalAuthForm() {
     return (
         <Container>
             <form action="#" method="POST" className="space-y-6">
                 <Container>
-
-                    <Input 
+                    <Input
                         label="Email Address"
                         id="email"
                         name="email"
@@ -18,12 +17,10 @@ export function LocalAuthForm() {
                         autoComplete="email"
                         colorScheme="amber"
                     />
-
                 </Container>
 
                 <Container>
-
-                    <Input 
+                    <Input
                         label="Password"
                         id="password"
                         name="password"
@@ -31,28 +28,26 @@ export function LocalAuthForm() {
                         required
                         autoComplete="current-password"
                         colorScheme="amber"
-
-                        
                     />
-                    
                 </Container>
 
                 <Flexbox
                     alignItems="center"
                     justifyContent="between"
-                // className="flex items-center justify-between"
+                    // className="flex items-center justify-between"
                 >
                     <Container className="flex items-center">
-                        <CheckboxGroup 
+                        <CheckboxGroup
                             onChange={() => {}}
-                            options={
-                                [{id: 'remember-me',
-                                isSelected: false,
-                                name: 'Remember me',
-                                value: 'Remember-me',}]
-                            }
+                            options={[
+                                {
+                                    id: 'remember-me',
+                                    isSelected: false,
+                                    name: 'Remember me',
+                                    value: 'Remember-me',
+                                },
+                            ]}
                             colorScheme="amber"
-                            
                         />
                     </Container>
 
@@ -65,7 +60,6 @@ export function LocalAuthForm() {
                         </a>
                     </Container>
                 </Flexbox>
-
             </form>
         </Container>
     )

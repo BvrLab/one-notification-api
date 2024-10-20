@@ -8,7 +8,6 @@ An ongoing project that simplifies email notification configuration and manageme
 
 The client is built with Next.js and the server with Nest.js.
 
-
 ## Table of Contents
 
 - [Installation](#installation)
