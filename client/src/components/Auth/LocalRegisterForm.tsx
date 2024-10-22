@@ -2,11 +2,26 @@ import CheckboxGroup from '../Checkboxs/CheckboxGroup'
 import Container from '../Containers/Container'
 import Flexbox from '../Containers/flexbox/Flexbox'
 import Input from '../Inputs/Input'
+import { useFormState } from 'react-dom'
+import { signUp } from '@/lib/auth'
+import React, { Dispatch, DOMAttributes, MouseEventHandler, SetStateAction } from 'react'
+import Button from '../Buttons/Button'
 
-export function LocalRegisterForm() {
+interface LocalAuthFormProps {
+    setIsLogin: (isLogin:boolean) => void; 
+}
+export function LocalRegisterForm(
+    { setIsLogin }: LocalAuthFormProps
+) {
+    const [state, action] = useFormState(signUp, undefined)
+
     return (
         <Container>
-            <form action="#" method="POST" className="space-y-6">
+            <form action={action} method="POST" className="space-y-6">
+                {state?.message && (
+                    <p className="text-xs text-red-500">{state.message}</p>
+                )}
+
                 <Container>
                     <Input
                         label="Name"
@@ -17,6 +32,11 @@ export function LocalRegisterForm() {
                         autoComplete="name"
                         colorScheme="amber"
                     />
+                    {state?.error?.name && (
+                        <p className="text-sm text-red-500">
+                            {state.error.name}
+                        </p>
+                    )}
                 </Container>
 
                 <Container>
@@ -24,11 +44,17 @@ export function LocalRegisterForm() {
                         label="Email Address"
                         id="email"
                         name="email"
-                        type="email"
+                        // type="email"
                         required
                         autoComplete="email"
                         colorScheme="amber"
                     />
+
+                    {state?.error?.email && (
+                        <p className="text-xs text-red-500">
+                            {state.error.email}
+                        </p>
+                    )}
                 </Container>
 
                 <Container>
@@ -36,11 +62,21 @@ export function LocalRegisterForm() {
                         label="Password"
                         id="password"
                         name="password"
-                        type="password"
+                        // type="password"
                         required
                         autoComplete="current-password"
                         colorScheme="amber"
                     />
+                    {state?.error?.password && (
+                        <div className="text-xs text-red-500">
+                            <p>Password must:</p>
+                            <ul>
+                                {state.error.password.map((error) => (
+                                    <li key={error}>{error}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </Container>
 
                 <Flexbox
@@ -70,6 +106,27 @@ export function LocalRegisterForm() {
                         >
                             Forgot password?
                         </a>
+                    </Container>
+                </Flexbox>
+                
+                <Flexbox justifyContent="between" flex="1" className="py-8">
+                    <Container alignContent="center" className="text-sm">
+                        <a
+                            href="#"
+                            className="text-black-500 font-semibold hover:text-amber-900"
+                            onClick={(e) => {
+                                setIsLogin(true)   
+                            }}
+                        >
+                            Already have an account? Login
+                        </a>
+                    </Container>
+
+                    <Container>
+                        {/* <Button colorScheme="amber">Sign in</Button> */}
+                        <Button type="submit" className="mt-2 w-full">
+                            submit
+                        </Button>
                     </Container>
                 </Flexbox>
             </form>

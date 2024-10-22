@@ -8,7 +8,11 @@ import { SocialAuthForm } from './SocialAuthForm'
 import { LocalRegisterForm } from './LocalRegisterForm'
 
 export function LoginForm() {
-    const [isLogin, SetIsLogin] = useState(true)
+    const [isLogin, setIsLogin] = useState(true);
+
+    function triggerIsLogin( isLogin:boolean){
+        return setIsLogin(isLogin);
+    }
 
     return (
         <Container>
@@ -31,24 +35,17 @@ export function LoginForm() {
 
             {/* Password Login */}
             <Container className="mt-8">
-                {isLogin ? <LocalAuthForm /> : <LocalRegisterForm />}
+                {   isLogin ? (
+                    <LocalAuthForm
+                        setIsLogin = {triggerIsLogin}
+                    
+                    /> 
+                ): 
+                    (<LocalRegisterForm 
+                        setIsLogin = {triggerIsLogin}
+                    />)
+                }
             </Container>
-
-            <Flexbox justifyContent="between" flex="1" className="py-8">
-                <Container alignContent="center" className="text-sm">
-                    <a
-                        href="#"
-                        className="text-black-500 font-semibold hover:text-amber-900"
-                        onClick={() => SetIsLogin(!isLogin)}
-                    >
-                        Don&apos;t have an account? Register
-                    </a>
-                </Container>
-
-                <Container>
-                    <Button colorScheme="amber">Sign in</Button>
-                </Container>
-            </Flexbox>
         </Container>
     )
 }
