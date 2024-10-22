@@ -4,15 +4,13 @@ import Flexbox from '../Containers/flexbox/Flexbox'
 import Input from '../Inputs/Input'
 import { useFormState } from 'react-dom'
 import { signUp } from '@/lib/auth'
-import React, { Dispatch, DOMAttributes, MouseEventHandler, SetStateAction } from 'react'
+import React from 'react'
 import Button from '../Buttons/Button'
 
 interface LocalAuthFormProps {
-    setIsLogin: (isLogin:boolean) => void; 
+    setIsLogin: (isLogin: boolean) => void
 }
-export function LocalRegisterForm(
-    { setIsLogin }: LocalAuthFormProps
-) {
+export function LocalRegisterForm({ setIsLogin }: LocalAuthFormProps) {
     const [state, action] = useFormState(signUp, undefined)
 
     return (
@@ -108,14 +106,14 @@ export function LocalRegisterForm(
                         </a>
                     </Container>
                 </Flexbox>
-                
+
                 <Flexbox justifyContent="between" flex="1" className="py-8">
                     <Container alignContent="center" className="text-sm">
                         <a
                             href="#"
                             className="text-black-500 font-semibold hover:text-amber-900"
                             onClick={(e) => {
-                                setIsLogin(true)   
+                                setIsLogin(true)
                             }}
                         >
                             Already have an account? Login
