@@ -83,8 +83,12 @@ export function LocalAuthForm({ setIsLogin }: LocalAuthFormProps) {
 
                     <Container>
                         {/* <Button colorScheme="amber">Sign in</Button> */}
-                        <Button type="submit" className="mt-2 w-full">
-                            submit
+                        <Button
+                            type="submit"
+                            className="mt-2 w-full"
+                            colorScheme="amber"
+                        >
+                            Login
                         </Button>
                     </Container>
                 </Flexbox>

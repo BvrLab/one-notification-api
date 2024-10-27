@@ -23,16 +23,16 @@ export function LocalRegisterForm({ setIsLogin }: LocalAuthFormProps) {
                 <Container>
                     <Input
                         label="Name"
-                        id="name"
-                        name="name"
-                        type="name"
+                        id="username"
+                        name="username"
+                        type="username"
                         required
                         autoComplete="name"
                         colorScheme="amber"
                     />
-                    {state?.error?.name && (
+                    {state?.error?.username && (
                         <p className="text-sm text-red-500">
-                            {state.error.name}
+                            {state.error.username}
                         </p>
                     )}
                 </Container>
@@ -121,9 +121,12 @@ export function LocalRegisterForm({ setIsLogin }: LocalAuthFormProps) {
                     </Container>
 
                     <Container>
-                        {/* <Button colorScheme="amber">Sign in</Button> */}
-                        <Button type="submit" className="mt-2 w-full">
-                            submit
+                        <Button
+                            type="submit"
+                            className="mt-2 w-full"
+                            colorScheme="amber"
+                        >
+                            Register
                         </Button>
                     </Container>
                 </Flexbox>

@@ -1,16 +1,20 @@
 import {
+    Body,
     Controller,
     Get,
     HttpCode,
     HttpStatus,
     Post,
+    Req,
     Request,
+    Res,
     UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { GoogleOAuthGuard } from './guards/google-oauth/google-oauth.guard';
 
 import { LocalAuthGuard } from './guards/local-auth/local-auth.guard';
+import { CreateUserDto } from 'src/users/dtos/user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -20,7 +24,11 @@ export class AuthController {
 
     // @Post('signout')
 
-    // @Public()
+    @Post('signup')
+    registerUser(@Body() createUserDto: CreateUserDto) {
+        return this.authService.registerUser(createUserDto);
+    }
+
     @HttpCode(HttpStatus.OK)
     @UseGuards(LocalAuthGuard)
     @Post('login')
@@ -35,5 +43,8 @@ export class AuthController {
 
     @UseGuards(GoogleOAuthGuard)
     @Get('google/callback')
-    googleCallback() {}
+    async googleCallback(@Req() req, @Res() res) {
+        const response = await this.authService.login(req.user.id);
+        res.redirect(`http://localhost:3333?token=${response.accessToken}`);
+    }
 }

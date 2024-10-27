@@ -1,10 +1,11 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, Req, Res, UnauthorizedException } from '@nestjs/common';
 import { compare } from 'bcryptjs';
 import { UsersService } from 'src/users/users.service';
 import { RegisterUserDto } from './dtos/auth.dto';
 import { CreateUserDto } from 'src/users/dtos/user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { AuthJwtPayload } from './types/auth-jwtPayload';
+
 
 @Injectable()
 export class AuthService {
@@ -26,35 +27,23 @@ export class AuthService {
 
     async login(userId: string) {
         const payload: AuthJwtPayload = { sub: userId };
-        return this.jwtService.sign(payload);
+        //genrerate accessToken
+        const accessToken = await this.jwtService.signAsync(payload);
+        return {
+            id: userId,
+            accessToken,
+        };
     }
 
-    // async validateGoogleUser(googleUser : CreateUserDto){
-    //     if(!googleUser){
-    //         throw new BadRequestException('Unauthenticated');
-    //     }
+    async validateGoogleUser(googleUser: CreateUserDto) {
+        const user = await this.usersService.findOneByEmail(googleUser.email);
+        if (user) return user;
+        return await this.usersService.create(googleUser);
+    }
 
-    //     const userExists = await this.usersService.findOneByEmail(googleUser.email);
-
-    //     if(!userExists){
-    //         return this.usersService.create(googleUser);
-    //     }
-
-    // }
-
-    // async registerUser(googleUser: RegisterUserDto){
-    //     try {
-    //         const newUser = this.usersService.create(googleUser);
-    //         newUser.username = generateFromEmail(user.email, 5);
-
-    //         await this.userRepository.save(newUser);
-
-    //         return this.generateJwt({
-    //           sub: newUser.id,
-    //           email: newUser.email,
-    //         });
-    //       } catch {
-    //         throw new InternalServerErrorException();
-    //       }
-    // }
+    async registerUser(createUserDto: CreateUserDto){
+        const user = await this.usersService.findOneByEmail(createUserDto.email);
+        if (user) throw new ConflictException('User already exists!');
+        return this.usersService.create(createUserDto);
+    }
 }

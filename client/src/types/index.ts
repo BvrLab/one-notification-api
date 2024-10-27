@@ -18,7 +18,7 @@ export interface NavigationOption {
 export type FormState =
     | {
           error?: {
-              name?: string[]
+              username?: string[]
               email?: string[]
               password?: string[]
           }
@@ -27,7 +27,7 @@ export type FormState =
     | undefined
 
 export const SignupFormSchema = z.object({
-    name: z.string().trim().min(2, {
+    username: z.string().trim().min(2, {
         message: 'Name must be at least 2 characters long.',
     }),
     email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
