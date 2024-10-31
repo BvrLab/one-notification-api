@@ -4,16 +4,24 @@ import CheckboxGroup from '../Checkboxs/CheckboxGroup'
 import Container from '../Containers/Container'
 import Flexbox from '../Containers/flexbox/Flexbox'
 import Input from '../Inputs/Input'
+import { signIn } from '@/lib/auth'
+import { useFormState } from 'react-dom'
+import { error } from 'console'
 
 interface LocalAuthFormProps {
     setIsLogin: (isLogin: boolean) => void
 }
 
 export function LocalAuthForm({ setIsLogin }: LocalAuthFormProps) {
+    const [state, action] = useFormState(signIn, undefined)
+
     return (
         <Container>
-            <form action="#" method="POST" className="space-y-6">
+            <form action={action} method="POST" className="space-y-6">
                 <Container>
+                    {state?.message && (
+                        <p className="text-sm text-red-500">{state.message}</p>
+                    )}
                     <Input
                         label="Email Address"
                         id="email"
@@ -23,6 +31,11 @@ export function LocalAuthForm({ setIsLogin }: LocalAuthFormProps) {
                         autoComplete="email"
                         colorScheme="amber"
                     />
+                    {state?.error?.email && (
+                        <p className="text-sm text-red-500">
+                            {state.error.email}
+                        </p>
+                    )}
                 </Container>
 
                 <Container>
@@ -35,6 +48,11 @@ export function LocalAuthForm({ setIsLogin }: LocalAuthFormProps) {
                         autoComplete="current-password"
                         colorScheme="amber"
                     />
+                    {state?.error?.password && (
+                        <p className="text-sm text-red-500">
+                            {state.error.password}
+                        </p>
+                    )}
                 </Container>
 
                 <Flexbox
@@ -82,7 +100,6 @@ export function LocalAuthForm({ setIsLogin }: LocalAuthFormProps) {
                     </Container>
 
                     <Container>
-                        {/* <Button colorScheme="amber">Sign in</Button> */}
                         <Button
                             type="submit"
                             className="mt-2 w-full"

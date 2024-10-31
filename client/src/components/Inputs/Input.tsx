@@ -22,18 +22,21 @@ type InputProps = React.ComponentPropsWithoutRef<'input'> & {
 }
 
 const Input = forwardRef(
-    ({
-        label,
-        onChange,
-        colorScheme = 'indigo',
-        maxSize,
-        leadingIcon,
-        trailingIcon,
-        isInvalid = false,
-        errorMessage,
-        validators,
-        ...props
-    }: InputProps) => {
+    (
+        {
+            label,
+            onChange,
+            colorScheme = 'indigo',
+            maxSize,
+            leadingIcon,
+            trailingIcon,
+            isInvalid = false,
+            errorMessage,
+            validators,
+            ...props
+        }: InputProps,
+        ref
+    ) => {
         const [isError, setError] = useState(false)
         const [errorMessages, setErrorMessages] = useState<string[]>(
             errorMessage ? [errorMessage] : []

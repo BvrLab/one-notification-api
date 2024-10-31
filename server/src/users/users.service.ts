@@ -12,19 +12,15 @@ export class UsersService {
 
     async create(createUserDto: CreateUserDto) {
         const userData = createUserDto;
-        console.log(userData);
 
         if (createUserDto.password) {
             const passwordHash = await bcrypt.hash(userData.password, 10);
             userData.password = passwordHash;
         }
-        console.log(userData);
 
         const user = this.prisma.user.create({
             data: userData,
         });
-
-        console.log(user);
 
         return user;
     }

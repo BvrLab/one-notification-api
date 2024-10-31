@@ -18,7 +18,7 @@ const NotificationForm: FC<NotificationFormProps> = ({ isOpen }) => {
     const { register, handleSubmit } = useForm<FormData>()
 
     const onSubmit: SubmitHandler<FormData> = (data) => {
-        console.log(data)
+        // console.log(data)
         // sendEmail(data);
     }
 
