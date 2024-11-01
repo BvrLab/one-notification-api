@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import {
+    Cog6ToothIcon,
+    ArrowLeftStartOnRectangleIcon,
+} from '@heroicons/react/24/outline'
 
 import { NavigationOption } from '@/types'
 
@@ -106,6 +109,17 @@ const SideNavMenu = ({ navigations, actions }: SideNavMenuProp) => {
                                         aria-hidden="true"
                                     />
                                     Settings
+                                </a>
+
+                                <a
+                                    href={"/api/auth/signout"}
+                                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-teal-900 hover:text-white"
+                                >
+                                    <ArrowLeftStartOnRectangleIcon
+                                        className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
+                                        aria-hidden="true"
+                                    />
+                                    Signout
                                 </a>
                             </li>
                         </ul>
