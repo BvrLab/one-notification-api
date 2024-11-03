@@ -4,9 +4,6 @@ import Container from '../Containers/Container'
 import Flexbox from '../Containers/flexbox/Flexbox'
 import { LoginForm } from './LoginForm'
 
-
-
-
 export default function AuthPage() {
     return (
         <Flexbox className="min-h-full bg-amber-50" flex="1" direction="row">

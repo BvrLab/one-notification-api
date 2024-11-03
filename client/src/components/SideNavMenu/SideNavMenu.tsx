@@ -112,7 +112,7 @@ const SideNavMenu = ({ navigations, actions }: SideNavMenuProp) => {
                                 </a>
 
                                 <a
-                                    href={"/api/auth/signout"}
+                                    href={'/api/auth/signout'}
                                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-teal-900 hover:text-white"
                                 >
                                     <ArrowLeftStartOnRectangleIcon

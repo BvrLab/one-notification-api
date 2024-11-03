@@ -29,6 +29,8 @@ export async function signUp(
         body: JSON.stringify(validationFields.data),
     })
 
+    console.log(response)
+
     if (response.ok) {
         redirect('/dashboard')
     } else

@@ -12,6 +12,8 @@ import CheckboxGroup from '../Checkboxs/CheckboxGroup'
 import { signUp } from '../../lib/auth'
 import { GoogleButton } from './GoogleButton'
 import { GitHubButton } from './GitHubButton'
+import { BACKEND_URL } from '@/lib/constants'
+import { env } from 'process'
 
 interface LocalAuthFormProps {
     setIsLogin: (isLogin: boolean) => void
@@ -252,7 +254,11 @@ function SocialAuthForm() {
     return (
         <div>
             <div className="mt-6 grid grid-cols-2 gap-12">
-                <GoogleButton>Google</GoogleButton>
+                <GoogleButton
+                    onClick={() => {
+                        window.location.href = `${BACKEND_URL}/auth/google/login`
+                    }}
+                ></GoogleButton>
                 <GitHubButton>GitHub</GitHubButton>
             </div>
         </div>
