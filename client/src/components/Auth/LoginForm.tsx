@@ -258,7 +258,9 @@ function SocialAuthForm() {
                     onClick={() => {
                         window.location.href = `${BACKEND_URL}/auth/google/login`
                     }}
-                ></GoogleButton>
+                >
+                    Google
+                </GoogleButton>
                 <GitHubButton>GitHub</GitHubButton>
             </div>
         </div>

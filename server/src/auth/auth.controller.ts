@@ -5,12 +5,12 @@ import {
     HttpCode,
     HttpStatus,
     Post,
-    Req,
     Request,
     Res,
     UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Response } from 'express';
 import { GoogleOAuthGuard } from './guards/google-oauth/google-oauth.guard';
 
 import { LocalAuthGuard } from './guards/local-auth/local-auth.guard';
@@ -33,7 +33,10 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async localLogin(@Request() req) {
-        const token = await this.authService.login(req.user.id);
+        const token = await this.authService.login(
+            req.user.id,
+            req.user.username,
+        );
         return { id: req.user.id, token };
     }
 
@@ -43,8 +46,14 @@ export class AuthController {
 
     @UseGuards(GoogleOAuthGuard)
     @Get('google/callback')
-    async googleCallback(@Req() req, @Res() res) {
-        const response = await this.authService.login(req.user.id);
-        res.redirect(`http://localhost:3333?token=${response.accessToken}`);
+    async googleCallback(@Request() req, @Res() res: Response) {
+        // console.log('Google User', req.user);
+        const resopnse = await this.authService.login(
+            req.user.id,
+            req.user.name,
+        );
+        res.redirect(
+            `http://localhost:3000/api/auth/google/callback?userId=${resopnse.id}&name=${resopnse.name}&accessToken=${resopnse.accessToken}`,
+        );
     }
 }

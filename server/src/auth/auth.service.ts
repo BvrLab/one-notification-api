@@ -30,12 +30,23 @@ export class AuthService {
         return { id: (await user).id };
     }
 
-    async login(userId: string) {
-        const payload: AuthJwtPayload = { sub: userId };
-        //genrerate accessToken
-        const accessToken = await this.jwtService.signAsync(payload);
+    async login(userId: number, name: string) {
+        const accessToken = await this.generateTokens(userId);
+
         return {
             id: userId,
+            name: name,
+            accessToken,
+        };
+    }
+
+    async generateTokens(userId: number) {
+        const payload: AuthJwtPayload = { sub: userId };
+        const [accessToken] = await Promise.all([
+            this.jwtService.signAsync(payload),
+        ]);
+
+        return {
             accessToken,
         };
     }
