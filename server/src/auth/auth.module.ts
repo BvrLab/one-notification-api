@@ -10,10 +10,12 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import jwtConfig from './config/jwt.config';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import refreshConfig from './config/refresh.config';
 
 @Module({
     imports: [
         ConfigModule.forFeature(googleOauthConfig),
+        ConfigModule.forFeature(refreshConfig),
         ConfigModule.forFeature(jwtConfig),
         PassportModule,
         JwtModule.registerAsync(jwtConfig.asProvider()),

@@ -12,7 +12,7 @@ export type Session = {
         // role: Role;
     }
     accessToken: string
-    // refreshToken: string
+    refreshToken: string
 }
 
 const secretKey = process.env.SESSION_SECRET_KEY!
@@ -75,7 +75,7 @@ export async function updateTokens({
             ...payload.user,
         },
         accessToken,
-        // refreshToken,
+        refreshToken,
     }
 
     await createSession(newPayload)
