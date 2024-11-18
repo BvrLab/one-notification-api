@@ -32,4 +32,42 @@ export class UsersService {
 
         return user;
     }
+
+    async findOneById(id: string) {
+        const user = this.prisma.user.findUnique({
+            where: { id: id },
+        });
+
+        return user;
+    }
+
+    async updateAccessToken(
+        userId: string,
+        accessToken: string,
+    ): Promise<void> {
+        await this.prisma.user.update({
+            where: { id: userId },
+            data: { accessToken },
+        });
+    }
+    async updateRefreshToken(userId: string, RT: string | null) {
+        return await this.prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                refreshToken: RT,
+            },
+        });
+    }
+    // async updateHashedRefreshToken(userId: number, hashedRT: string | null) {
+    //     return await this.prisma.user.update({
+    //       where: {
+    //         id: userId,
+    //       },
+    //       data: {
+    //         hashedRefreshToken: hashedRT,
+    //       },
+    //     });
+    //   }
 }

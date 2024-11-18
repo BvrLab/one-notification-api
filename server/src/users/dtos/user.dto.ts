@@ -13,6 +13,14 @@ export class CreateUserDto {
     @IsNotEmpty()
     username: string;
 
+    @IsString()
+    @IsNotEmpty()
+    accessToken: string;
+
+    @IsString()
+    @IsNotEmpty()
+    refreshToken: string;
+
     //   @IsString()
     //   @IsNotEmpty()
     //   provider: string;

@@ -20,7 +20,8 @@ model User {
 
   email              String  @unique
   password           String?
-  hashedRefreshToken String?
+  accessToken        String?
+  refreshToken        String?
   username           String
 
   emailNotifications EmailNotifications[]

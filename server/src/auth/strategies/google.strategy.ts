@@ -1,6 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+    Inject,
+    Injectable,
+    InternalServerErrorException,
+    Logger,
+} from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy, VerifyCallback } from 'passport-google-oauth2';
+import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import googleOAuthConfig from '../config/google-oauth-config';
 import { ConfigType } from '@nestjs/config';
 import { UsersService } from 'src/users/users.service';
@@ -18,7 +23,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
             clientID: configService.google.clientID,
             clientSecret: configService.google.clientSecret,
             callbackURL: configService.google.callbackURL,
-            scope: ['profile', 'email'],
+            scope: ['profile', 'email', 'https://mail.google.com/'],
+        });
+    }
+
+    authorizationParams(options: any): any {
+        return Object.assign(options, {
+            prompt: 'consent',
+            access_type: 'offline',
         });
     }
 
@@ -28,14 +40,26 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         profile: any,
         done: VerifyCallback,
     ): Promise<any> {
-        const user = await this.authService.validateGoogleUser({
-            email: profile.emails[0].value,
-            username: profile.name.givenName + profile.name.familyName,
-            // avatarUrl: profile.photos[0].value,
-            password: '',
-        });
-        // return user;
+        try {
+            const user = await this.authService.validateGoogleUser({
+                email: profile.emails[0].value,
+                username: profile.name.givenName + profile.name.familyName,
+                // avatarUrl: profile.photos[0].value,
+                password: '',
+                accessToken,
+                refreshToken,
+            });
 
-        done(null, user);
+            this.userService.updateAccessToken(user.id, accessToken),
+                this.userService.updateRefreshToken(user.id, refreshToken),
+                console.log('validate refreshToken user: ', user.refreshToken);
+            console.log('validate accessToken: user: ', user.accessToken);
+            done(null, user);
+        } catch (error) {
+            Logger.error(error);
+            const internalError = new InternalServerErrorException();
+            done(internalError);
+            throw internalError;
+        }
     }
 }
