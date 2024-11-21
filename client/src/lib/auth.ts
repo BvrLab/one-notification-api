@@ -2,13 +2,13 @@
 
 import { redirect } from 'next/navigation'
 import { BACKEND_URL } from './constants'
-import { FormState, LoginFormSchema, SignupFormSchema } from '@/types'
+import { AuthFormState, LoginFormSchema, SignupFormSchema } from '@/types'
 import { createSession, updateTokens } from './session'
 
 export async function signUp(
-    state: FormState,
+    state: AuthFormState,
     formData: FormData
-): Promise<FormState> {
+): Promise<AuthFormState> {
     const validationFields = SignupFormSchema.safeParse({
         username: formData.get('username'),
         email: formData.get('email'),
@@ -29,8 +29,6 @@ export async function signUp(
         body: JSON.stringify(validationFields.data),
     })
 
-    console.log(response)
-
     if (response.ok) {
         redirect('/dashboard')
     } else
@@ -43,9 +41,9 @@ export async function signUp(
 }
 
 export async function signIn(
-    state: FormState,
+    state: AuthFormState,
     formData: FormData
-): Promise<FormState> {
+): Promise<AuthFormState> {
     const validatedFields = LoginFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -67,8 +65,8 @@ export async function signIn(
 
     if (response.ok) {
         const result = await response.json()
-        // TODO: Create The Session For Authenticated User.
 
+        // Create The Session For Authenticated User.
         await createSession({
             user: {
                 id: result.id,

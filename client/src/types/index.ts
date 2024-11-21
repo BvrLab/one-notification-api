@@ -1,4 +1,5 @@
-import { z } from 'zod'
+import { Content } from 'next/font/google'
+import { object, z } from 'zod'
 
 export interface CheckboxGroupOption {
     id: string
@@ -15,7 +16,7 @@ export interface NavigationOption {
     current: boolean
 }
 
-export type FormState =
+export type AuthFormState =
     | {
           error?: {
               username?: string[]
@@ -51,4 +52,23 @@ export const LoginFormSchema = z.object({
     password: z.string().min(1, {
         message: 'Password field must not be empty.',
     }),
+})
+
+export type EmailNotificationFormState =
+    | {
+          error?: {
+              recipient?: string[]
+              subject?: string[]
+              content?: string[]
+          }
+          message?: string
+      }
+    | undefined
+
+export const emailnotificationFormSchema = z.object({
+    recipient: z.string().email({ message: 'Please enter a valid email.' }),
+    subject: z.string().min(1, {
+        message: 'Object field must not be empty.',
+    }),
+    content: z.string(),
 })

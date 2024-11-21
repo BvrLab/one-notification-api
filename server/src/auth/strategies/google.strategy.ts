@@ -10,6 +10,7 @@ import googleOAuthConfig from '../config/google-oauth-config';
 import { ConfigType } from '@nestjs/config';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from '../auth.service';
+import { hash } from 'argon2';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
@@ -46,15 +47,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
                 username: profile.name.givenName + profile.name.familyName,
                 // avatarUrl: profile.photos[0].value,
                 password: '',
-                accessToken,
-                refreshToken,
             });
 
-            this.userService.updateAccessToken(user.id, accessToken),
-                this.userService.updateRefreshToken(user.id, refreshToken),
-                console.log('validate refreshToken user: ', user.refreshToken);
-            console.log('validate accessToken: user: ', user.accessToken);
-            done(null, user);
+            this.userService.updateGoogleAccessToken(user.id, accessToken),
+                this.userService.updateGoogleRefreshToken(
+                    user.id,
+                    refreshToken,
+                ),
+                done(null, user);
         } catch (error) {
             Logger.error(error);
             const internalError = new InternalServerErrorException();

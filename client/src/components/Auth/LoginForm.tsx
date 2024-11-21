@@ -13,7 +13,6 @@ import { signUp } from '../../lib/auth'
 import { GoogleButton } from './GoogleButton'
 import { GitHubButton } from './GitHubButton'
 import { BACKEND_URL } from '@/lib/constants'
-import { env } from 'process'
 
 interface LocalAuthFormProps {
     setIsLogin: (isLogin: boolean) => void
@@ -35,7 +34,7 @@ function LocalRegisterForm({ setIsLogin }: LocalAuthFormProps) {
 
                 <Container>
                     <Input
-                        label="Name"
+                        // label="Name"
                         id="username"
                         name="username"
                         type="username"

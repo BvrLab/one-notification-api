@@ -14,12 +14,10 @@ export class CreateUserDto {
     username: string;
 
     @IsString()
-    @IsNotEmpty()
-    accessToken: string;
+    accessToken?: string;
 
     @IsString()
-    @IsNotEmpty()
-    refreshToken: string;
+    refreshToken?: string;
 
     //   @IsString()
     //   @IsNotEmpty()

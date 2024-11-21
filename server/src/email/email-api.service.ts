@@ -24,7 +24,7 @@ export class EmailApiService {
     public async sendMail(dto: EmailDto, userId: string) {
         const user = await this.usersService.findOneById(userId);
 
-        if (!user || !user.accessToken || !user.refreshToken) {
+        if (!user || !user.googleAccessToken || !user.googleRefreshToken) {
             throw new UnauthorizedException(
                 'User not authenticated with Google',
             );
@@ -32,8 +32,8 @@ export class EmailApiService {
 
         // Set credentials with the accessToken and refreshToken
         this.oAuth2Client.setCredentials({
-            access_token: user.accessToken,
-            refresh_token: user.refreshToken,
+            access_token: user.googleAccessToken,
+            refresh_token: user.googleRefreshToken,
         });
 
         try {
@@ -49,7 +49,7 @@ export class EmailApiService {
                     user: user.email,
                     clientId: process.env.GOOGLE_CLIENT_ID,
                     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                    refreshToken: user.refreshToken,
+                    // refreshToken: user.googleRefreshToken,
                     accessToken: token, // Use the fresh access token
                 },
             });
@@ -63,7 +63,6 @@ export class EmailApiService {
             };
 
             const result = await transport.sendMail(mailOptions);
-            console.log('from: ', mailOptions.from);
             console.log('Email sent successfully');
             return result;
         } catch (error) {

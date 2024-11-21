@@ -41,33 +41,40 @@ export class UsersService {
         return user;
     }
 
-    async updateAccessToken(
+    async updateGoogleAccessToken(
         userId: string,
-        accessToken: string,
+        hashedAccessToken: string,
     ): Promise<void> {
         await this.prisma.user.update({
             where: { id: userId },
-            data: { accessToken },
+            data: {
+                googleAccessToken: hashedAccessToken,
+            },
         });
     }
-    async updateRefreshToken(userId: string, RT: string | null) {
+
+    async updateGoogleRefreshToken(
+        userId: string,
+        hashedRefreshToken: string | null,
+    ) {
         return await this.prisma.user.update({
             where: {
                 id: userId,
             },
             data: {
-                refreshToken: RT,
+                googleRefreshToken: hashedRefreshToken,
             },
         });
     }
-    // async updateHashedRefreshToken(userId: number, hashedRT: string | null) {
-    //     return await this.prisma.user.update({
-    //       where: {
-    //         id: userId,
-    //       },
-    //       data: {
-    //         hashedRefreshToken: hashedRT,
-    //       },
-    //     });
-    //   }
+
+    async updateHashedRefreshToken(userId: string, hashedRT: string | null) {
+        return await this.prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                hashedRefreshToken: hashedRT,
+            },
+        });
+    }
 }

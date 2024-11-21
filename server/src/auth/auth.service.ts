@@ -8,11 +8,10 @@ import {
 } from '@nestjs/common';
 import { compare } from 'bcryptjs';
 import { UsersService } from 'src/users/users.service';
-import { RegisterUserDto } from './dtos/auth.dto';
 import { CreateUserDto } from 'src/users/dtos/user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { AuthJwtPayload } from './types/auth-jwtPayload';
-// import { hash, verify } from 'argon2';
+import { hash, verify } from 'argon2';
 import { ConfigType } from '@nestjs/config';
 import refreshConfig from './config/refresh.config';
 
@@ -38,9 +37,8 @@ export class AuthService {
 
     async login(userId: string, name: string) {
         const { accessToken, refreshToken } = await this.generateTokens(userId);
-        // console.log('generated accessToken: ', accessToken)
-        // const hashedRT = await hash(refreshToken);
-        // await this.usersService.updateRefreshToken(userId, refreshToken);
+        const hashedRT = await hash(refreshToken);
+        await this.usersService.updateHashedRefreshToken(userId, hashedRT);
         return {
             id: userId,
             name: name,

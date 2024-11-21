@@ -18,11 +18,12 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email              String  @unique
-  password           String?
-  accessToken        String?
-  refreshToken        String?
-  username           String
+  email                    String  @unique
+  password                 String?
+  googleAccessToken  String?
+  googleRefreshToken String?
+  hashedRefreshToken       String?
+  username                 String
 
   emailNotifications EmailNotifications[]
 
@@ -33,7 +34,7 @@ model User {
 model EmailNotifications {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   senderEmail String
-  sender      User?   @relation(fields: [senderEmail], references: [email]) //will need to switch to required
+  sender      User?  @relation(fields: [senderEmail], references: [email]) //will need to switch to required
   recipient   String
   subject     String
   content     String
