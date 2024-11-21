@@ -11,7 +11,5 @@ import { UsersService } from 'src/users/users.service';
     imports: [],
     providers: [EmailApiService, UsersService],
     controllers: [EmailApiController],
-
-    // exports: [EmailApiService]
 })
 export class EmailApiModule {}

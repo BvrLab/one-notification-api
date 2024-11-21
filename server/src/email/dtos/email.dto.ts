@@ -1,13 +1,14 @@
+import { EmailNotificationStatus } from '@prisma/client';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class EmailDto {
     @IsEmail()
     @IsNotEmpty()
-    recipient: string;
+    senderEmail?: string;
 
-    // @IsEmail()
-    // @IsNotEmpty()
-    // sender: User;
+    @IsEmail()
+    @IsNotEmpty()
+    recipient: string;
 
     @IsString()
     @IsNotEmpty()
@@ -16,9 +17,6 @@ export class EmailDto {
     @IsString()
     @IsNotEmpty()
     content: string;
-
-    // @IsString()
-    status?: string;
 
     // @IsJSON()
     // attachments?: JSON;
