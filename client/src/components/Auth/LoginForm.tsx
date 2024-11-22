@@ -27,7 +27,7 @@ function LocalRegisterForm({ setIsLogin }: LocalAuthFormProps) {
 
     return (
         <Container>
-            <form action={action} method="POST" className="space-y-6">
+            <form action={action} className="space-y-6">
                 {state?.message && (
                     <p className="text-xs text-red-500">{state.message}</p>
                 )}
@@ -152,7 +152,7 @@ function LocalAuthForm({ setIsLogin }: LocalAuthFormProps) {
 
     return (
         <Container>
-            <form action={action} method="POST" className="space-y-6">
+            <form action={action} className="space-y-6">
                 <Container>
                     {state?.message && (
                         <p className="text-sm text-red-500">{state.message}</p>
