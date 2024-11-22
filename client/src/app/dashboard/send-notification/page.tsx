@@ -20,7 +20,7 @@ export default function Page() {
                 <div
                     className={`mx-4 my-8 flex h-auto w-full flex-row justify-center sm:mx-6 sm:my-10 lg:mx-8 lg:my-12 ${isOpen ? 'formSlideIn' : 'formSlideOut'}`}
                 >
-                    <NotificationForm isOpen={isOpen} />
+                    <NotificationForm/>
                 </div>
             </div>
         </section>
