@@ -1,11 +1,7 @@
 'use server'
-
-import {
-    emailnotificationFormSchema,
-    EmailNotificationFormState,
-} from '@/types'
-import { BACKEND_URL } from './constants'
 import { getSession } from './session'
+import { emailnotificationFormSchema, EmailNotificationFormState } from '@/types'
+import { BACKEND_URL } from './constants'
 
 export async function sendEmailNotification(
     state: EmailNotificationFormState,
@@ -23,28 +19,48 @@ export async function sendEmailNotification(
         }
     }
 
-    //TODO: fault condition mey need here
     const session = await getSession()
     const userId = session?.user.id
 
-    const response = await fetch(
-        `${BACKEND_URL}/email-api/${userId}/send-email`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(validationFields.data),
-        }
-    )
-
-    if (response.ok) {
-        //TODO: If sucess , tell front end
-    } else
+    if (!userId) {
         return {
-            message:
-                response.status === 409
-                    ? 'The user is already existed!'
-                    : response.statusText,
+            message: 'User session not found' ,
         }
+    }
+
+    try {
+        const response = await fetch(
+            `${BACKEND_URL}/email-api/${userId}/send-email`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(validationFields.data),
+            }
+        )
+
+        if (response.ok) {
+            const result = await response.json()
+            // console.log('Email sent successfully:', result)
+            return {
+                message: 'Email sent successfully',
+            }
+        } else {
+            const errorText = await response.text()
+            console.error('Failed to send email:', errorText)
+            return {
+                    message:
+                        response.status === 409
+                            ? 'The user already exists!'
+                            : response.statusText,
+
+            }
+        }
+    } catch (error) {
+        console.error('Error sending email:', error)
+        return {
+            message: 'An unexpected error occurred' ,
+        }
+    }
 }

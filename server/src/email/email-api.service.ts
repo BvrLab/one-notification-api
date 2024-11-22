@@ -52,7 +52,7 @@ export class EmailApiService {
             const result = await transport.sendMail(mailOptions);
             await this.updateEmailStatus(email, 'sent');
 
-            // console.log('Email sent successfully:', result);
+            // console.log('Email sent successfully:\n', result);
             return result;
         } catch (error) {
             console.error('Failed to send email:', error);

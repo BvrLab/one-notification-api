@@ -61,6 +61,11 @@ function NotificationForm() {
                             {state.error.content}
                         </p>
                     )}
+                    {state?.message && (
+                        <p className="text-sm text-green-700 font-bold">
+                            {state.message}
+                        </p>
+                    )}
                     <textarea
                         id="content"
                         name="content"
@@ -68,7 +73,9 @@ function NotificationForm() {
                         placeholder="Type your message here..."
                         className="block h-full w-full rounded-md border-0 bg-orange-50 py-3 text-gray-900 ring-0 focus:ring-0 sm:text-sm sm:leading-6"
                     ></textarea>
+
                 </div>
+                
                 <div className="flex justify-end px-4 pb-2">
                     <button
                         type="submit"
