@@ -3,7 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build","^db:generate"],
-      "outputs": [".next/**", "!.next/cache/**"],
+      "outputs": ["dist/**"],
       "env": [
         "NEXT_PUBLIC_API_URL",
         "SESSION_SECRET_KEY",
