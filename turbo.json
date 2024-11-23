@@ -3,13 +3,10 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "client#build": {
-      "env": ["NEXT_PUBLIC_API_URL","SESSION_SECRET_KEY"]
-    },
-    "server#build": {
+      "outputs": [".next/**", "!.next/cache/**"],
       "env": [
+        "NEXT_PUBLIC_API_URL",
+        "SESSION_SECRET_KEY",
         "GOOGLE_CLIENT_ID",
         "GOOGLE_CLIENT_SECRET",
         "GOOGLE_CALL_BACK_URL",
@@ -20,7 +17,7 @@
         "REFRESH_JWT_EXPIRE_IN"
       ]
     },
-        "db:generate": {
+    "db:generate": {
       "cache": false
     },
     "db:push": {
