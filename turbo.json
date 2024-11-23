@@ -20,6 +20,12 @@
         "REFRESH_JWT_EXPIRE_IN"
       ]
     },
+        "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    },
     "check-types": {
       "dependsOn": ["^check-types"]
     },
