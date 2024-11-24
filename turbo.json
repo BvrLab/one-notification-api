@@ -5,7 +5,8 @@
       "dependsOn": ["^build","^db:generate"],
       "outputs": [
         ".next/**",
-        "!.next/cache/**"
+        "!.next/cache/**",
+        "dist/**"
       ],
       "env": [
         "NEXT_PUBLIC_API_URL",
