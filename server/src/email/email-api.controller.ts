@@ -11,7 +11,7 @@ export class EmailApiController {
     @Post(':id/send-email')
     // @UseGuards(ApiKeyGuard)
     public async sendEmail(@Body() dto: EmailDto, @Param('id') userId: string) {
-        return await this.emailApiService.sendMail(dto, userId);
+        // return await this.emailApiService.sendMail(dto, userId);
     }
 
     // @Get('emails/:id')
