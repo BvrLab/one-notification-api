@@ -1,12 +1,20 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
   "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "outputs": [
         ".next/**",
-        "!.next/cache/**",
-        "dist/**"
+        "!.next/cache/**"
       ],
       "env": [
         "NEXT_PUBLIC_API_URL",
@@ -21,12 +29,8 @@
         "REFRESH_JWT_EXPIRE_IN"
       ]
     },
-    "check-types": {
-      "dependsOn": ["^check-types"]
-    },
-    "dev": {
-      "persistent": true,
-      "cache": false
-    }
+    "lint": {},
+    "test": {},
+    "test:e2e": {}
   }
 }
